@@ -25,6 +25,10 @@ public class Main {
 
             try {
                 type = Integer.parseInt(choice);
+                if (type < 1 || type > 5) {
+                    System.out.println("Invalid choice. Please enter a valid choice or 'stop' to exit.");
+                    continue;
+                }
                 System.out.print("Enter value: ");
                 value = scanner.nextDouble();
             } catch (NumberFormatException e) {
@@ -59,4 +63,5 @@ public class Main {
         }
     }
 }
+
 
