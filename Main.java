@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        TheBytesConverter converter = new TheBytesConverter();
 
         System.out.println("Choose the conversion type:");
         System.out.println("1. Kilobytes to Megabytes");
@@ -13,41 +14,41 @@ public class Main {
 
         int choice = scanner.nextInt();
         double value;
-        TheBytesConverter converter = new TheBytesConverter();
 
         switch (choice) {
             case 1:
                 System.out.print("Enter kilobytes: ");
                 value = scanner.nextDouble();
-                System.out.println("Converting " + value + " kilobytes:");
-                converter.printBytesConversions(value, "kilobytes");
+                double megaBytes = converter.kiloBytesToMegaBytes((int) value);
+                System.out.println(value + " kilobytes = " + megaBytes + " megabytes");
                 break;
             case 2:
                 System.out.print("Enter megabytes: ");
                 value = scanner.nextDouble();
-                System.out.println("Converting " + value + " megabytes:");
-                converter.printBytesConversions(value, "megabytes");
+                int kiloBytes = converter.megaBytesToKiloBytes((int) value);
+                System.out.println(value + " megabytes = " + kiloBytes + " kilobytes");
                 break;
             case 3:
                 System.out.print("Enter megabytes: ");
                 value = scanner.nextDouble();
-                System.out.println("Converting " + value + " megabytes:");
-                converter.printBytesConversions(value, "megabytes");
+                double terabytes = converter.megaBytesToTerabytes((int) value);
+                System.out.println(value + " megabytes = " + terabytes + " terabytes");
                 break;
             case 4:
                 System.out.print("Enter terabytes: ");
                 value = scanner.nextDouble();
-                System.out.println("Converting " + value + " terabytes:");
-                converter.printBytesConversions(value, "terabytes");
+                double mega = converter.terabytesToMegaBytes(value);
+                System.out.println(value + " terabytes = " + mega + " megabytes");
                 break;
             case 5:
                 System.out.print("Enter terabytes: ");
                 value = scanner.nextDouble();
-                System.out.println("Converting " + value + " terabytes:");
-                converter.printBytesConversions(value, "terabytes");
+                double kilo = converter.terabytesToKiloBytes(value);
+                System.out.println(value + " terabytes = " + kilo + " kilobytes");
                 break;
             default:
                 System.out.println("Invalid choice.");
         }
     }
 }
+
