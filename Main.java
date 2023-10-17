@@ -11,43 +11,55 @@ public class Main {
         System.out.println("3. Megabytes to Terabytes");
         System.out.println("4. Terabytes to Megabytes");
         System.out.println("5. Terabytes to Kilobytes");
+        System.out.println("Enter 'stop' to exit.");
 
-        int choice = scanner.nextInt();
-        double value;
+        while (true) {
+            String choice = scanner.next();
 
-        switch (choice) {
-            case 1:
-                System.out.print("Enter kilobytes: ");
-                value = scanner.nextDouble();
-                double megaBytes = converter.kiloBytesToMegaBytes((int) value);
-                System.out.println(value + " kilobytes = " + megaBytes + " megabytes");
+            if (choice.equalsIgnoreCase("stop")) {
                 break;
-            case 2:
-                System.out.print("Enter megabytes: ");
+            }
+
+            int type;
+            double value;
+
+            try {
+                type = Integer.parseInt(choice);
+                if (type < 1 || type > 5) {
+                    System.out.println("Invalid choice. Please enter a valid choice or 'stop' to exit.");
+                    continue;
+                }
+                System.out.print("Enter value: ");
                 value = scanner.nextDouble();
-                int kiloBytes = converter.megaBytesToKiloBytes((int) value);
-                System.out.println(value + " megabytes = " + kiloBytes + " kilobytes");
-                break;
-            case 3:
-                System.out.print("Enter megabytes: ");
-                value = scanner.nextDouble();
-                double terabytes = converter.megaBytesToTerabytes((int) value);
-                System.out.println(value + " megabytes = " + terabytes + " terabytes");
-                break;
-            case 4:
-                System.out.print("Enter terabytes: ");
-                value = scanner.nextDouble();
-                double mega = converter.terabytesToMegaBytes(value);
-                System.out.println(value + " terabytes = " + mega + " megabytes");
-                break;
-            case 5:
-                System.out.print("Enter terabytes: ");
-                value = scanner.nextDouble();
-                double kilo = converter.terabytesToKiloBytes(value);
-                System.out.println(value + " terabytes = " + kilo + " kilobytes");
-                break;
-            default:
-                System.out.println("Invalid choice.");
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a valid choice or 'stop' to exit.");
+                continue;
+            }
+
+            switch (type) {
+                case 1:
+                    double megaBytes = converter.kiloBytesToMegaBytes((int) value);
+                    System.out.println(value + " kilobytes = " + megaBytes + " megabytes");
+                    break;
+                case 2:
+                    int kiloBytes = converter.megaBytesToKiloBytes((int) value);
+                    System.out.println(value + " megabytes = " + kiloBytes + " kilobytes");
+                    break;
+                case 3:
+                    double terabytes = converter.megaBytesToTerabytes((int) value);
+                    System.out.println(value + " megabytes = " + terabytes + " terabytes");
+                    break;
+                case 4:
+                    double mega = converter.terabytesToMegaBytes(value);
+                    System.out.println(value + " terabytes = " + mega + " megabytes");
+                    break;
+                case 5:
+                    double kilo = converter.terabytesToKiloBytes(value);
+                    System.out.println(value + " terabytes = " + kilo + " kilobytes");
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please enter a valid choice or 'stop' to exit.");
+            }
         }
     }
 }
