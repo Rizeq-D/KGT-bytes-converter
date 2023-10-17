@@ -58,6 +58,7 @@ public class Main {
                     System.out.println(value + " terabytes = " + kilo + " kilobytes");
                     break;
                 default:
+
                     System.out.println("Invalid choice. Please enter a valid choice or 'stop' to exit:");
             }
         }
